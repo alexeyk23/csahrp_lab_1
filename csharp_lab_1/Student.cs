@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.IO;
 namespace csharp_lab_1
 {
+    [Serializable]
     class Student
     {
         string fio;
@@ -42,7 +43,20 @@ namespace csharp_lab_1
             this.group = group;
             this.sessions = sessions;
         }
-
+        public void SaveToText(StreamWriter sw)
+        {
+            sw.WriteLine(fio);
+            sw.WriteLine(curs);
+            sw.WriteLine(group);
+            sessions.SaveToText(sw);
+        }
+        public void LoadFromText(StreamReader sr)
+        {
+            fio = sr.ReadLine();
+            curs = int.Parse(sr.ReadLine());
+            group = int.Parse(sr.ReadLine());
+            sessions.LoadFromText(sr);
+        }
     }
 
 }
