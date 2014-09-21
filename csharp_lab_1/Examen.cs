@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
 
 namespace csharp_lab_1
 {
     [Serializable]
-    class Examen
+    class Examen 
     {
         private string name;
         private int mark;
-        private int Mark 
+        public int Mark 
         {
             get { return mark; }
             set { mark = value; }
@@ -39,6 +42,17 @@ namespace csharp_lab_1
            string[] s= sr.ReadLine().Split(' ');
            Name = s[0];
            Mark = int.Parse(s[1]);           
+        }
+        public void ShowToDgvRow(DataGridViewRow row)
+        {
+            DataGridViewCell[] cells = new DataGridViewTextBoxCell[2];
+            for (int i = 0; i < 2; i++)
+            {
+                cells[i] = new DataGridViewTextBoxCell();
+            }
+            cells[0].Value = name;
+            cells[1].Value = mark;
+            row.Cells.AddRange(cells);
         }
     }
 }

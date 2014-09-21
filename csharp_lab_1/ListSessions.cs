@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
+
 namespace csharp_lab_1
 {
     [Serializable]
     class ListSessions
     {
         List<Session> ses;
+        public List<Session> Sessions 
+        { 
+            get{return ses;}
+            set{ses=value;}
+        }
         [NonSerialized]
         int countSes;
 
@@ -37,6 +44,32 @@ namespace csharp_lab_1
         public void AddSession(Session s)
         {
             ses.Add(s);
+        }
+        public void ShowToDgv(DataGridView dgv)
+        {
+            dgv.Rows.Clear();
+            foreach (Session item in ses)
+            {
+                item.ShowToDgv(dgv);
+            }
+        }
+        public double GetSumMark(string name, ref int count)
+        {
+            double res = 0;            
+            foreach (Session item in ses)
+            {
+                res+= item.GetSumMark(name,ref count);                
+            }
+            return res;
+        }
+        public void FillRandom()
+        {
+            for (int i = 0; i < countSes; i++)
+            {
+                Session s = new Session();
+                s.FillRandom();
+                ses.Add(s);
+            }
         }
     }
 }
