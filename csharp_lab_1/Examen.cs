@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace csharp_lab_1
 {
     [Serializable]
-    class Examen 
+    public class Examen 
     {
         private string name;
         private int mark;

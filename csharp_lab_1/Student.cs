@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace csharp_lab_1
 {
     [Serializable]
-    class Student
+    public class Student
     {
         string fio;
         int curs;

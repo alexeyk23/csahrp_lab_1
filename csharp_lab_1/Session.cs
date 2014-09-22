@@ -8,13 +8,19 @@ using System.Windows.Forms;
 namespace csharp_lab_1
 {
     [Serializable]
-    class Session
+    public class Session
     {
         List<Examen> exams;
         private string[] randName = new string[] { "матан", "алгем", "инф. и прогр.", "ясп", "алгоритмы", "структуры", "бд", "тв и мс" };
         public Session(List<Examen> ex)
         {
             exams = ex;
+        }
+        public List<Examen> Examens
+        {
+            get { return exams; }
+            set { exams = value; }
+
         }
         public Session()
         {

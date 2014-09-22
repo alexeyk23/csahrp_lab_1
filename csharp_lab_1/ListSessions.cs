@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace csharp_lab_1
 {
     [Serializable]
-    class ListSessions
+   public class ListSessions
     {
         List<Session> ses;
         public List<Session> Sessions 
@@ -24,6 +24,10 @@ namespace csharp_lab_1
             countSes = 2 * kurs;
             ses = new List<Session>(countSes);
            
+        }
+        public ListSessions()
+        {
+
         }
         public void SaveToText(StreamWriter sw)
         {

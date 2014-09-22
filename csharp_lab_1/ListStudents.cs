@@ -3,37 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+
 namespace csharp_lab_1
 {
     [Serializable]
-    class ListStudents
+    public class ListStudents
+
     {
-       List<Student> stds = new List<Student>();
+       List<Student> students = new List<Student>();
        public void Add(Student s)
         {
-            stds.Add(s);
+            students.Add(s);
         }
-       public void Delete(string fio)
+       public List<Student> Students
+       {   get { return students; }
+           set { students = value; }
+       }
+        /* public void Delete(string fio)
         {
            //todo
         }
        public void Find(string fio)
         {
             //todo
-        }
+        }*/
         public ListStudents()
         {
 
         }
         public int Count 
         {
-            get { return stds.Count; }
+            get { return students.Count; }
         }
         public void Show(DataGridView dgvStud, DataGridView dgvSes)
         {
             dgvStud.Rows.Clear();
             dgvSes.Rows.Clear();
-            foreach (Student item in stds)
+            foreach (Student item in students)
             {
                 DataGridViewRow r = new DataGridViewRow();                
                 item.Show(r);
@@ -43,14 +49,14 @@ namespace csharp_lab_1
         }
         public Student this[int index]
         {
-            get { return stds[index]; }
-            set { stds[index] = value; }
+            get { return students[index]; }
+            set { students[index] = value; }
         }
         public double GetMidleMark(string subjName,int curs)
         {
             int count=0;
             double res=0;
-            foreach (Student item in stds)
+            foreach (Student item in students)
             {
                 if (item.Curs == curs)
                 {

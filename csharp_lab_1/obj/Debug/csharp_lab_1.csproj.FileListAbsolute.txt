@@ -1,6 +1,5 @@
 C:\Users\Администратор\documents\visual studio 2012\Projects\csharp_lab_1\csharp_lab_1\bin\Debug\csharp_lab_1.exe
 C:\Users\Администратор\documents\visual studio 2012\Projects\csharp_lab_1\csharp_lab_1\bin\Debug\csharp_lab_1.pdb
-C:\Users\Администратор\documents\visual studio 2012\Projects\csharp_lab_1\csharp_lab_1\obj\Debug\csharp_lab_1.csprojResolveAssemblyReference.cache
 C:\Users\Администратор\documents\visual studio 2012\Projects\csharp_lab_1\csharp_lab_1\obj\Debug\csharp_lab_1.Form1.resources
 C:\Users\Администратор\documents\visual studio 2012\Projects\csharp_lab_1\csharp_lab_1\obj\Debug\csharp_lab_1.Properties.Resources.resources
 C:\Users\Администратор\documents\visual studio 2012\Projects\csharp_lab_1\csharp_lab_1\obj\Debug\csharp_lab_1.csproj.GenerateResource.Cache
