@@ -37,11 +37,12 @@ namespace csharp_lab_1
         {
             sw.WriteLine(name+" "+mark);
         }
+        char[] separators = new char[] { ' ' };
         public void ReadFromText(StreamReader sr)
         {
-           string[] s= sr.ReadLine().Split(' ');
+           string[] s= sr.ReadLine().Split(separators,StringSplitOptions.RemoveEmptyEntries);
            Name = s[0];
-           Mark = int.Parse(s[1]);           
+           Mark = int.Parse(s[s.Length-1]);           
         }
         public void ShowToDgvRow(DataGridViewRow row)
         {

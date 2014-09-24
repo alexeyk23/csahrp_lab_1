@@ -10,8 +10,8 @@ namespace csharp_lab_1
     [Serializable]
     public class Session
     {
-        List<Examen> exams;
-        private string[] randName = new string[] { "матан", "алгем", "инф. и прогр.", "ясп", "алгоритмы", "структуры", "бд", "тв и мс" };
+        private List<Examen> exams;
+        private static string[] randName = new string[] { "матан", "алгем", "инф. и прогр.", "ясп", "алгоритмы", "структуры", "бд", "тв и мс" };
         public Session(List<Examen> ex)
         {
             exams = ex;

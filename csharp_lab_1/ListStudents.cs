@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -10,7 +11,7 @@ namespace csharp_lab_1
     public class ListStudents
 
     {
-       List<Student> students = new List<Student>();
+       private List<Student> students = new List<Student>();
        public void Add(Student s)
         {
             students.Add(s);
@@ -64,6 +65,27 @@ namespace csharp_lab_1
                 }
             }
             return count==0 ? 0: (res / count);
+        }
+        public void SaveToText(string fileName)
+        {
+            StreamWriter sw = new StreamWriter(fileName);
+            foreach (Student item in students)
+            {
+                item.SaveToText(sw);
+            }
+            sw.Close();
+        }
+        public void LoadFromText(string fileName)
+        {
+            StreamReader sr = new StreamReader(fileName);
+            students.Clear();
+            while (!sr.EndOfStream)
+            {
+                Student a = new Student();
+                a.LoadFromText(sr);
+                students.Add(a);
+            }
+            sr.Close();
         }
     }
 }

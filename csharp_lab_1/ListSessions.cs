@@ -10,7 +10,7 @@ namespace csharp_lab_1
     [Serializable]
    public class ListSessions
     {
-        List<Session> ses;
+        private List<Session> ses;
         public List<Session> Sessions 
         { 
             get{return ses;}
@@ -22,8 +22,7 @@ namespace csharp_lab_1
         public ListSessions(int kurs)
         {
             countSes = 2 * kurs;
-            ses = new List<Session>(countSes);
-           
+            ses = new List<Session>(countSes);           
         }
         public ListSessions()
         {
@@ -38,11 +37,12 @@ namespace csharp_lab_1
         }
         public void LoadFromText(StreamReader sr)
         {
-            ses.Clear();
+            ses = new List<Session>(countSes);     
             for (int i = 0; i < countSes; i++)
             {
                 Session s = new Session();
                 s.LoadFromText(sr);
+                ses.Add(s);
             }
         }
         public void AddSession(Session s)
@@ -68,9 +68,10 @@ namespace csharp_lab_1
         }
         public void FillRandom()
         {
+            Session s;
             for (int i = 0; i < countSes; i++)
             {
-                Session s = new Session();
+                s = new Session();
                 s.FillRandom();
                 ses.Add(s);
             }

@@ -9,10 +9,10 @@ namespace csharp_lab_1
     [Serializable]
     public class Student
     {
-        string fio;
-        int curs;
-        int group;
-        ListSessions sessions;
+        private string fio;
+        private int curs;
+        private int group;
+        private ListSessions sessions;
 
         public string Fio 
         {
@@ -65,6 +65,7 @@ namespace csharp_lab_1
             fio = sr.ReadLine();
             curs = int.Parse(sr.ReadLine());
             group = int.Parse(sr.ReadLine());
+            sessions = new ListSessions(curs);
             sessions.LoadFromText(sr);
         }
         public void Show(DataGridViewRow row)
