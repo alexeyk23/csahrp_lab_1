@@ -18,8 +18,15 @@ namespace csharp_lab_1
         SerializeManager sm = new SerializeManager();
         public Form1()
         {
-            InitializeComponent();           
+            InitializeComponent();
+         //   Application.Idle += MyIdle;
         }
+       /* private void MyIdle(object sender, EventArgs e)
+        {
+            saveToBinaryToolStripMenuItem.Enabled = gListStudents.Modified;
+            saveToTextToolStripMenuItem.Enabled = gListStudents.Modified;
+            saveToXMLToolStripMenuItem.Enabled = gListStudents.Modified;
+        }*/
 
         private void btnAddStudent_Click(object sender, EventArgs e)
         {
@@ -36,15 +43,7 @@ namespace csharp_lab_1
         {
             if (gListStudents.Count != 0 && dgvStudents.CurrentRow.Index >= 0 && dgvStudents.CurrentRow.Index < gListStudents.Count)
             { gListStudents[dgvStudents.CurrentRow.Index].Sessions.ShowToDgv(dgvSessions); }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SerializeManager sm = new SerializeManager();
-           // sm.Serialize(gListStudents, typeof(ListStudents), ESerializeType.Binary, "gop.bin");
-            gListStudents = (ListStudents)sm.Deserialize(typeof(ListStudents), ESerializeType.Binary, "gop.bin");
-            gListStudents.Show(dgvStudents, dgvSessions);
-        }
+        }      
 
         private void numpdCurs_ValueChanged(object sender, EventArgs e)
         {
@@ -53,22 +52,29 @@ namespace csharp_lab_1
 
         private void btnGoMidMark_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(gListStudents.GetMidleMark(txbxSubjName.Text.Trim(), (int)numpdCurs.Value).ToString(),"Средний бал по предмету");
+            double t = gListStudents.GetMidleMark(txbxSubjName.Text.Trim(), (int)numpdCurs.Value);
+            MessageBox.Show(t==0?"Не найден предмет или курс":t.ToString(),"Средний бал по предмету");
 
         }
         SaveFileDialog sfd = new SaveFileDialog();
         private void saveToXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             sfd.Filter = "xml files (*.xml)|*.xml";
-            if(sfd.ShowDialog()==DialogResult.OK)
-              sm.Serialize(gListStudents,typeof(ListStudents),ESerializeType.Xml,sfd.FileName);
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                sm.Serialize(gListStudents, typeof(ListStudents), ESerializeType.Xml, sfd.FileName);
+              //  gListStudents.Modified = false;
+            }
         }
 
         private void saveToBinaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             sfd.Filter = "Binary files (*.bin)|*.bin";
             if (sfd.ShowDialog() == DialogResult.OK)
+            {
                 sm.Serialize(gListStudents, typeof(ListStudents), ESerializeType.Binary, sfd.FileName);
+               // gListStudents.Modified = false;
+            }
         }
         OpenFileDialog ofd = new OpenFileDialog();
         private void loadFromBinaryToolStripMenuItem_Click(object sender, EventArgs e)

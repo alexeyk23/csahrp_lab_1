@@ -12,25 +12,28 @@ namespace csharp_lab_1
 
     {
        private List<Student> students = new List<Student>();
-       public void Add(Student s)
-        {
-            students.Add(s);
-        }
+       private bool modif = false;
+        //есть ли не сохраненные изменения
+       public bool Modified
+       {
+           get { return modif; }
+           set { modif = value; }
+       }
+
        public List<Student> Students
        {   get { return students; }
            set { students = value; }
-       }
-        /* public void Delete(string fio)
-        {
-           //todo
-        }
-       public void Find(string fio)
-        {
-            //todo
-        }*/
+       }      
+
         public ListStudents()
         {
+            modif = false;
+        }
 
+        public void Add(Student s)
+        {
+            students.Add(s);
+            modif = true;
         }
         public int Count 
         {
@@ -48,11 +51,13 @@ namespace csharp_lab_1
                 item.Sessions.ShowToDgv(dgvSes);
             }
         }
+        
         public Student this[int index]
         {
             get { return students[index]; }
             set { students[index] = value; }
         }
+
         public double GetMidleMark(string subjName,int curs)
         {
             int count=0;
@@ -66,6 +71,7 @@ namespace csharp_lab_1
             }
             return count==0 ? 0: (res / count);
         }
+
         public void SaveToText(string fileName)
         {
             StreamWriter sw = new StreamWriter(fileName);
@@ -73,8 +79,10 @@ namespace csharp_lab_1
             {
                 item.SaveToText(sw);
             }
+            modif = false;
             sw.Close();
         }
+
         public void LoadFromText(string fileName)
         {
             StreamReader sr = new StreamReader(fileName);

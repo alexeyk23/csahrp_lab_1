@@ -37,7 +37,7 @@ namespace csharp_lab_1
         {
             sw.WriteLine(name+" "+mark);
         }
-        char[] separators = new char[] { ' ' };
+        private char[] separators = new char[] { ' ' };
         public void ReadFromText(StreamReader sr)
         {
            string[] s= sr.ReadLine().Split(separators,StringSplitOptions.RemoveEmptyEntries);
